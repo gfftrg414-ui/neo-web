@@ -946,43 +946,32 @@ filters.forEach(button => {
 
 searchInput.addEventListener("input", filterSites);
 
-// ثبت درخواست سفارش
+// رفتن به صفحه جزئیات سایت
 document.querySelectorAll(".order-btn").forEach(button => {
     button.addEventListener("click", () => {
+
         const name = button.dataset.name;
-        const price = button.dataset.price;
 
-        const message =
-            `سلام، برای سفارش ${name} درخواست دارم.\n` +
-            `قیمت درج‌شده: ${price}\n` +
-            `لطفاً امکانات و هزینه نهایی را اعلام کنید.`;
+        const productIds = {
+            "فروشگاه اینترنتی": "shop",
+            "سایت رستوران": "restaurant",
+            "سایت شرکتی": "company",
+            "سایت گیمینگ": "gaming",
+            "سایت شخصی": "personal",
+            "سایت خبری": "news"
+        };
 
-        // شماره واتساپ خودت را جایگزین کن.
-        // کد کشور و شماره را بدون + و فاصله بنویس.
-        const whatsappNumber = "989369388324";
+        const productId = productIds[name];
 
-        if (whatsappNumber === "989889888998") {
-            alert(
-                `سایت انتخابی: ${name}\n` +
-                `قیمت درج‌شده: ${price}\n\n` +
-                "برای فعال شدن سفارش، شماره واتساپ خودت را " +
-                "در کد جاوااسکریپت جایگزین کن."
-            );
+        if (!productId) {
+            alert("محصول موردنظر پیدا نشد.");
             return;
         }
 
-      const rubikaUsername = "neo_web";
-alert(
-  "سفارش شما:\n" +
-  "نام سایت: " + name + "\n" +
-  "قیمت: " + price + "\n\n" +
-  "این پیام را کپی کن و برای ما در روبیکا بفرست."
-);
-const url = "https://rubika.ir/" + rubikaUsername;
-
-window.open(url, "_blank", "noopener,noreferrer");
+        window.location.href = "product.html?id=" + productId;
     });
 });
+
 
 </script>
 </body>
